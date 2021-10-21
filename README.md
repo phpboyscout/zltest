@@ -2,8 +2,7 @@
 [![GoDoc](https://img.shields.io/badge/api-Godoc-blue.svg)](https://pkg.go.dev/github.com/phpboyscout/zltest)
 
 Logging is an integral part of most applications and as such it has tobe tested. 
-Package `zltest` provides facilities to test 
-[zerolog](https://github.com/rs/zerolog) log messages.
+Package `zltest` provides facilities to test [zerolog](https://github.com/rs/zerolog) log messages.
 
 In general `zltest.Tester` provides methods to test values (or existence) of
 specific fields in logged messages.
