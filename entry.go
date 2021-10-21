@@ -69,6 +69,18 @@ func (ent *Entry) Str(key string) (string, KeyStatus) {
 	return "", KeyMissing
 }
 
+// Str returns log entry field key as a string.
+func (ent *Entry) Strs(key string) ([]string, KeyStatus) {
+	ent.t.Helper()
+	if itf, ok := ent.m[key]; ok {
+		if got, ok := itf.([]string); ok {
+			return got, KeyFound
+		}
+		return "", KeyBadType
+	}
+	return "", KeyMissing
+}
+
 // ExpStr tests log entry has a field key, its value is a string,
 // and it's equal to exp.
 func (ent *Entry) ExpStr(key string, exp string) {
