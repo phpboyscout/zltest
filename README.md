@@ -1,5 +1,5 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/rzajac/zltest)](https://goreportcard.com/report/github.com/rzajac/zltest)
-[![GoDoc](https://img.shields.io/badge/api-Godoc-blue.svg)](https://pkg.go.dev/github.com/rzajac/zltest)
+[![Go Report Card](https://goreportcard.com/badge/github.com/phpboyscout/zltest)](https://goreportcard.com/report/github.com/phpboyscout/zltest)
+[![GoDoc](https://img.shields.io/badge/api-Godoc-blue.svg)](https://pkg.go.dev/github.com/phpboyscout/zltest)
 
 Logging is an integral part of most applications and as such it has tobe tested. 
 Package `zltest` provides facilities to test 
@@ -11,7 +11,7 @@ specific fields in logged messages.
 ## Installation
 
 ```
-go get github.com/rzajac/zltest
+go get github.com/phpboyscout/zltest
 ```
 
 ## Examples

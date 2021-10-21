@@ -7,7 +7,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/assert"
 
-	. "github.com/rzajac/zltest/internal"
+	. "github.com/phpboyscout/zltest/internal"
 )
 
 func Test_Entries(t *testing.T) {
