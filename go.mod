@@ -1,4 +1,4 @@
-module github.com/rzajac/zltest
+module github.com/phpboyscout/zltest
 
 go 1.15
 
