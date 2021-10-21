@@ -73,10 +73,13 @@ func (ent *Entry) Str(key string) (string, KeyStatus) {
 func (ent *Entry) Strs(key string) ([]string, KeyStatus) {
 	ent.t.Helper()
 	if itf, ok := ent.m[key]; ok {
-		if got, ok := itf.([]string); ok {
-			return got, KeyFound
+		var res []string
+		for _, s := range itf.([]interface{}) {
+			if got, ok2 := s.(string); ok2 {
+				res = append(res, got)
+			}
 		}
-		return []string{}, KeyBadType
+		return res, KeyFound
 	}
 	return []string{}, KeyMissing
 }
@@ -101,6 +104,49 @@ func (ent *Entry) expStr(key string, exp string) string {
 				exp,
 				got,
 			)
+		}
+		return ""
+	}
+	return formatError(ent.t, status, key, "string")
+}
+
+// ExpStr tests log entry has a field key, its value is a string,
+// and it's equal to exp.
+func (ent *Entry) ExpStrs(key string, exp []string) {
+	ent.t.Helper()
+	if err := ent.expStrs(key, exp); err != "" {
+		ent.t.Error(err)
+	}
+}
+
+func (ent *Entry) expStrs(key string, exp []string) string {
+	ent.t.Helper()
+	got, status := ent.Strs(key)
+	if status == KeyFound {
+		if len(got) != len(exp) {
+			return fmt.Sprintf(
+				"expected entry key '%s' to have value '%v' but got '%v'",
+				key,
+				exp,
+				got,
+			)
+		}
+
+		for _, k := range got {
+			found := false
+			for _, i := range exp {
+				if k == i {
+					found = true
+				}
+			}
+			if !found {
+				return fmt.Sprintf(
+					"expected entry key '%s' to have value '%v' but got '%v'",
+					key,
+					exp,
+					got,
+				)
+			}
 		}
 		return ""
 	}
