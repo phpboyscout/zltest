@@ -76,9 +76,9 @@ func (ent *Entry) Strs(key string) ([]string, KeyStatus) {
 		if got, ok := itf.([]string); ok {
 			return got, KeyFound
 		}
-		return "", KeyBadType
+		return []string{}, KeyBadType
 	}
-	return "", KeyMissing
+	return []string{}, KeyMissing
 }
 
 // ExpStr tests log entry has a field key, its value is a string,
